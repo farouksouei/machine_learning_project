@@ -1,0 +1,84 @@
+{
+  "models": {
+    "logistic": {
+      "20260106_143557": {
+        "model_id": "logistic_v20260106_143557",
+        "registered_at": "2026-01-06T14:35:57.146824",
+        "metrics": {
+          "train_accuracy": 0.9378744175726648,
+          "train_precision": 0.9607645875251509,
+          "train_recall": 0.7984949832775919,
+          "train_f1": 0.8721461187214612,
+          "train_roc_auc": 0.9748631045395454,
+          "val_accuracy": 0.8145519077196096,
+          "val_precision": 0.6991150442477876,
+          "val_recall": 0.5284280936454849,
+          "val_f1": 0.6019047619047619,
+          "val_roc_auc": 0.8470424765320795,
+          "cv_roc_auc_mean": 0.8452358788922636,
+          "cv_roc_auc_std": 0.010252098630495065,
+          "timestamp": "2026-01-06T14:35:57.143660",
+          "saved_at": "2026-01-06 14:35:57"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      },
+      "20260106_143619": {
+        "model_id": "logistic_v20260106_143619",
+        "registered_at": "2026-01-06T14:36:19.830127",
+        "metrics": {
+          "train_accuracy": 0.9369869092522742,
+          "train_precision": 0.954183266932271,
+          "train_recall": 0.8010033444816054,
+          "train_f1": 0.8709090909090909,
+          "train_roc_auc": 0.974907296949764,
+          "val_accuracy": 0.8181011535048802,
+          "val_precision": 0.7175925925925926,
+          "val_recall": 0.5183946488294314,
+          "val_f1": 0.6019417475728155,
+          "val_roc_auc": 0.8513099219620959,
+          "cv_roc_auc_mean": 0.848010931091754,
+          "cv_roc_auc_std": 0.009922249420741339,
+          "timestamp": "2026-01-06T14:36:19.825618",
+          "saved_at": "2026-01-06 14:36:19"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      }
+    },
+    "random_forest": {
+      "20260106_143642": {
+        "model_id": "random_forest_v20260106_143642",
+        "registered_at": "2026-01-06T14:36:42.654496",
+        "metrics": {
+          "train_accuracy": 1.0,
+          "train_precision": 1.0,
+          "train_recall": 1.0,
+          "train_f1": 1.0,
+          "train_roc_auc": 1.0,
+          "val_accuracy": 0.7941437444543035,
+          "val_precision": 0.6892655367231638,
+          "val_recall": 0.4080267558528428,
+          "val_f1": 0.5126050420168067,
+          "val_roc_auc": 0.8368272664113874,
+          "cv_roc_auc_mean": 0.8357768778136594,
+          "cv_roc_auc_std": 0.008453225328044387,
+          "timestamp": "2026-01-06T14:36:42.631560",
+          "saved_at": "2026-01-06 14:36:42"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      }
+    }
+  },
+  "experiments": {},
+  "created_at": "2026-01-06T14:35:53.713666",
+  "version": "1.0",
+  "updated_at": "2026-01-06T14:36:42.654496"
+}

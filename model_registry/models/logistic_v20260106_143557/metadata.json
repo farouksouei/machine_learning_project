@@ -1,0 +1,39 @@
+{
+  "model_id": "logistic_v20260106_143557",
+  "model_name": "logistic",
+  "version": "20260106_143557",
+  "registered_at": "2026-01-06T14:35:57.145659",
+  "model_path": "model_registry\\models\\logistic_v20260106_143557\\model.pkl",
+  "metrics_path": "model_registry\\models\\logistic_v20260106_143557\\metrics.json",
+  "metrics": {
+    "train_accuracy": 0.9378744175726648,
+    "train_precision": 0.9607645875251509,
+    "train_recall": 0.7984949832775919,
+    "train_f1": 0.8721461187214612,
+    "train_roc_auc": 0.9748631045395454,
+    "val_accuracy": 0.8145519077196096,
+    "val_precision": 0.6991150442477876,
+    "val_recall": 0.5284280936454849,
+    "val_f1": 0.6019047619047619,
+    "val_roc_auc": 0.8470424765320795,
+    "cv_roc_auc_mean": 0.8452358788922636,
+    "cv_roc_auc_std": 0.010252098630495065,
+    "timestamp": "2026-01-06T14:35:57.143660",
+    "saved_at": "2026-01-06 14:35:57"
+  },
+  "tags": [
+    "churn_prediction",
+    "production"
+  ],
+  "metadata": {
+    "best_params": {},
+    "preprocessing": "simple",
+    "data_shape": [
+      4507,
+      20
+    ],
+    "trained_at": "2026-01-06T14:35:57.140461"
+  },
+  "saved_at": "2026-01-06T14:35:57.145659",
+  "python_version": "3.12.10"
+}

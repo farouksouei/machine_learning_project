@@ -1,0 +1,39 @@
+{
+  "model_id": "gradient_boosting_v20260112_221323",
+  "model_name": "gradient_boosting",
+  "version": "20260112_221323",
+  "registered_at": "2026-01-12T22:13:23.759622",
+  "model_path": "model_registry\\models\\gradient_boosting_v20260112_221323\\model.pkl",
+  "metrics_path": "model_registry\\models\\gradient_boosting_v20260112_221323\\metrics.json",
+  "metrics": {
+    "train_accuracy": 0.8171732859995563,
+    "train_precision": 0.7089887640449438,
+    "train_recall": 0.5275919732441472,
+    "train_f1": 0.6049856184084372,
+    "train_roc_auc": 0.892314965115774,
+    "val_accuracy": 0.8136645962732919,
+    "val_precision": 0.7170731707317073,
+    "val_recall": 0.4916387959866221,
+    "val_f1": 0.5833333333333334,
+    "val_roc_auc": 0.8488944630248978,
+    "cv_roc_auc_mean": 0.8467828988201113,
+    "cv_roc_auc_std": 0.009049484998207966,
+    "timestamp": "2026-01-12T22:13:23.759084",
+    "saved_at": "2026-01-12 22:13:23"
+  },
+  "tags": [
+    "churn_prediction",
+    "production"
+  ],
+  "metadata": {
+    "best_params": {},
+    "preprocessing": "simple",
+    "data_shape": [
+      4507,
+      20
+    ],
+    "trained_at": "2026-01-12T22:13:23.752115"
+  },
+  "saved_at": "2026-01-12T22:13:23.759622",
+  "python_version": "3.12.10"
+}

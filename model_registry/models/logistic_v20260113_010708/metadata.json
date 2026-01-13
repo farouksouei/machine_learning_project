@@ -1,0 +1,60 @@
+{
+  "model_id": "logistic_v20260113_010708",
+  "model_name": "logistic",
+  "version": "20260113_010708",
+  "registered_at": "2026-01-13T01:07:08.235458",
+  "model_path": "model_registry\\models\\logistic_v20260113_010708\\model.pkl",
+  "metrics_path": "model_registry\\models\\logistic_v20260113_010708\\metrics.json",
+  "metrics": {
+    "train_accuracy": 0.8844020412691369,
+    "train_precision": 0.8519290928050052,
+    "train_recall": 0.6831103678929766,
+    "train_f1": 0.7582366589327146,
+    "train_roc_auc": 0.9357731500046969,
+    "val_accuracy": 0.8172138420585625,
+    "val_precision": 0.7123287671232876,
+    "val_recall": 0.5217391304347826,
+    "val_f1": 0.6023166023166023,
+    "val_roc_auc": 0.8512412550692323,
+    "cv_roc_auc_mean": 0.8481030334275215,
+    "cv_roc_auc_std": 0.009833086632970865,
+    "timestamp": "2026-01-13T01:07:08.234390",
+    "saved_at": "2026-01-13 01:07:08"
+  },
+  "tags": [
+    "churn_prediction",
+    "pipeline"
+  ],
+  "metadata": {
+    "best_params": {},
+    "preprocessing": "advanced",
+    "data_shape": [
+      4507,
+      19
+    ],
+    "feature_columns": [
+      "gender",
+      "SeniorCitizen",
+      "Partner",
+      "Dependents",
+      "tenure",
+      "PhoneService",
+      "MultipleLines",
+      "InternetService",
+      "OnlineSecurity",
+      "OnlineBackup",
+      "DeviceProtection",
+      "TechSupport",
+      "StreamingTV",
+      "StreamingMovies",
+      "Contract",
+      "PaperlessBilling",
+      "PaymentMethod",
+      "MonthlyCharges",
+      "TotalCharges"
+    ],
+    "trained_at": "2026-01-13T01:07:08.192419"
+  },
+  "saved_at": "2026-01-13T01:07:08.235458",
+  "python_version": "3.12.10"
+}

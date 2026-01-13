@@ -75,6 +75,7 @@ class ChurnTrainer:
         self.preprocessor = None
         self.models = {}
         self.best_model = None
+        self.best_pipeline = None
         self.best_model_name = None
         
         # Data containers
@@ -215,37 +216,49 @@ class ChurnTrainer:
             X_val_processed, self.y_val.values, model_name
         )
         
+        # Create a full pipeline with preprocessor + model for inference
+        full_pipeline = Pipeline([
+            ("preprocessor", self.preprocessor),
+            ("model", model)
+        ])
+
+        # Fit the pipeline on raw training data (preprocessor will handle transformation)
+        full_pipeline.fit(self.X_train, self.y_train)
+
         # Store results
         result = {
             'model': model,
+            'pipeline': full_pipeline,
             'best_params': best_params,
             'metrics': metrics
         }
-        
+
         self.models[model_name] = result
-        
+
         # Update best model
         if self.best_model is None or metrics['val_roc_auc'] > self.models[self.best_model_name]['metrics']['val_roc_auc']:
             self.best_model = model
+            self.best_pipeline = full_pipeline
             self.best_model_name = model_name
-        
-        # Save to model registry
+
+        # Save to model registry (save the full pipeline, not just the model)
         if save_to_registry:
             version = datetime.now().strftime("%Y%m%d_%H%M%S")
             self.model_registry.register_model(
-                model=model,
+                model=full_pipeline,
                 model_name=model_name,
                 version=version,
                 metrics=metrics,
                 metadata={
                     'best_params': best_params,
                     'preprocessing': 'advanced' if hasattr(self.preprocessor, 'feature_engineering') else 'simple',
-                    'data_shape': self.X_train.shape,
+                    'data_shape': list(self.X_train.shape),
+                    'feature_columns': list(self.X_train.columns),
                     'trained_at': datetime.now().isoformat()
                 },
-                tags=['churn_prediction', 'production']
+                tags=['churn_prediction', 'pipeline']
             )
-        
+
         return result
     
     def train_multiple_models(

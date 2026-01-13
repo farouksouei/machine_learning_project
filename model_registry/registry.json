@@ -48,6 +48,102 @@
           "churn_prediction",
           "production"
         ]
+      },
+      "20260112_221304": {
+        "model_id": "logistic_v20260112_221304",
+        "registered_at": "2026-01-12T22:13:04.576934",
+        "metrics": {
+          "train_accuracy": 0.9378744175726648,
+          "train_precision": 0.9607645875251509,
+          "train_recall": 0.7984949832775919,
+          "train_f1": 0.8721461187214612,
+          "train_roc_auc": 0.9748631045395454,
+          "val_accuracy": 0.8145519077196096,
+          "val_precision": 0.6991150442477876,
+          "val_recall": 0.5284280936454849,
+          "val_f1": 0.6019047619047619,
+          "val_roc_auc": 0.8470424765320795,
+          "cv_roc_auc_mean": 0.8452358788922636,
+          "cv_roc_auc_std": 0.010252098630495065,
+          "timestamp": "2026-01-12T22:13:04.574780",
+          "saved_at": "2026-01-12 22:13:04"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      },
+      "20260112_224227": {
+        "model_id": "logistic_v20260112_224227",
+        "registered_at": "2026-01-12T22:42:27.931133",
+        "metrics": {
+          "train_accuracy": 1.0,
+          "train_precision": 1.0,
+          "train_recall": 1.0,
+          "train_f1": 1.0,
+          "train_roc_auc": 1.0,
+          "val_accuracy": 0.8092280390417036,
+          "val_precision": 0.6544117647058824,
+          "val_recall": 0.5953177257525084,
+          "val_f1": 0.6234676007005254,
+          "val_roc_auc": 0.8446249979803854,
+          "cv_roc_auc_mean": 0.988916828676871,
+          "cv_roc_auc_std": 0.012224103687152387,
+          "timestamp": "2026-01-12T22:42:27.511104",
+          "saved_at": "2026-01-12 22:42:27"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      },
+      "20260113_004913": {
+        "model_id": "logistic_v20260113_004913",
+        "registered_at": "2026-01-13T00:49:13.765552",
+        "metrics": {
+          "train_accuracy": 0.8770800976259152,
+          "train_precision": 0.834375,
+          "train_recall": 0.669732441471572,
+          "train_f1": 0.7430426716141002,
+          "train_roc_auc": 0.9334862559078939,
+          "val_accuracy": 0.8181011535048802,
+          "val_precision": 0.706140350877193,
+          "val_recall": 0.5384615384615384,
+          "val_f1": 0.6110056925996205,
+          "val_roc_auc": 0.8470061234711518,
+          "cv_roc_auc_mean": 0.84523217021317,
+          "cv_roc_auc_std": 0.010224172675321495,
+          "timestamp": "2026-01-13T00:49:13.762794",
+          "saved_at": "2026-01-13 00:49:13"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      },
+      "20260113_010708": {
+        "model_id": "logistic_v20260113_010708",
+        "registered_at": "2026-01-13T01:07:08.237473",
+        "metrics": {
+          "train_accuracy": 0.8844020412691369,
+          "train_precision": 0.8519290928050052,
+          "train_recall": 0.6831103678929766,
+          "train_f1": 0.7582366589327146,
+          "train_roc_auc": 0.9357731500046969,
+          "val_accuracy": 0.8172138420585625,
+          "val_precision": 0.7123287671232876,
+          "val_recall": 0.5217391304347826,
+          "val_f1": 0.6023166023166023,
+          "val_roc_auc": 0.8512412550692323,
+          "cv_roc_auc_mean": 0.8481030334275215,
+          "cv_roc_auc_std": 0.009833086632970865,
+          "timestamp": "2026-01-13T01:07:08.234390",
+          "saved_at": "2026-01-13 01:07:08"
+        },
+        "tags": [
+          "churn_prediction",
+          "pipeline"
+        ]
       }
     },
     "random_forest": {
@@ -74,11 +170,114 @@
           "churn_prediction",
           "production"
         ]
+      },
+      "20260112_221312": {
+        "model_id": "random_forest_v20260112_221312",
+        "registered_at": "2026-01-12T22:13:12.264311",
+        "metrics": {
+          "train_accuracy": 1.0,
+          "train_precision": 1.0,
+          "train_recall": 1.0,
+          "train_f1": 1.0,
+          "train_roc_auc": 1.0,
+          "val_accuracy": 0.7941437444543035,
+          "val_precision": 0.6700507614213198,
+          "val_recall": 0.4414715719063545,
+          "val_f1": 0.532258064516129,
+          "val_roc_auc": 0.8355145169889971,
+          "cv_roc_auc_mean": 0.8286763912139135,
+          "cv_roc_auc_std": 0.010033595031716252,
+          "timestamp": "2026-01-12T22:13:12.261223",
+          "saved_at": "2026-01-12 22:13:12"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      }
+    },
+    "gradient_boosting": {
+      "20260112_221323": {
+        "model_id": "gradient_boosting_v20260112_221323",
+        "registered_at": "2026-01-12T22:13:23.760682",
+        "metrics": {
+          "train_accuracy": 0.8171732859995563,
+          "train_precision": 0.7089887640449438,
+          "train_recall": 0.5275919732441472,
+          "train_f1": 0.6049856184084372,
+          "train_roc_auc": 0.892314965115774,
+          "val_accuracy": 0.8136645962732919,
+          "val_precision": 0.7170731707317073,
+          "val_recall": 0.4916387959866221,
+          "val_f1": 0.5833333333333334,
+          "val_roc_auc": 0.8488944630248978,
+          "cv_roc_auc_mean": 0.8467828988201113,
+          "cv_roc_auc_std": 0.009049484998207966,
+          "timestamp": "2026-01-12T22:13:23.759084",
+          "saved_at": "2026-01-12 22:13:23"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      }
+    },
+    "xgboost": {
+      "20260112_221327": {
+        "model_id": "xgboost_v20260112_221327",
+        "registered_at": "2026-01-12T22:13:27.637742",
+        "metrics": {
+          "train_accuracy": 0.9414244508542268,
+          "train_precision": 0.9123893805309734,
+          "train_recall": 0.8620401337792643,
+          "train_f1": 0.8865004299226139,
+          "train_roc_auc": 0.9865478303294278,
+          "val_accuracy": 0.7923691215616682,
+          "val_precision": 0.6359832635983264,
+          "val_recall": 0.5083612040133779,
+          "val_f1": 0.5650557620817844,
+          "val_roc_auc": 0.8232433393113922,
+          "cv_roc_auc_mean": 0.8134657709086763,
+          "cv_roc_auc_std": 0.0066474529309158426,
+          "timestamp": "2026-01-12T22:13:27.634733",
+          "saved_at": "2026-01-12 22:13:27"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
+      }
+    },
+    "lightgbm": {
+      "20260112_221331": {
+        "model_id": "lightgbm_v20260112_221331",
+        "registered_at": "2026-01-12T22:13:31.958265",
+        "metrics": {
+          "train_accuracy": 0.8806301309074772,
+          "train_precision": 0.8238188976377953,
+          "train_recall": 0.6998327759197325,
+          "train_f1": 0.7567811934900542,
+          "train_roc_auc": 0.9556684468211262,
+          "val_accuracy": 0.7959183673469388,
+          "val_precision": 0.6575342465753424,
+          "val_recall": 0.4816053511705686,
+          "val_f1": 0.555984555984556,
+          "val_roc_auc": 0.8389862343075953,
+          "cv_roc_auc_mean": 0.8339703899126942,
+          "cv_roc_auc_std": 0.004936387374152022,
+          "timestamp": "2026-01-12T22:13:31.956266",
+          "saved_at": "2026-01-12 22:13:31"
+        },
+        "tags": [
+          "churn_prediction",
+          "production"
+        ]
       }
     }
   },
   "experiments": {},
   "created_at": "2026-01-06T14:35:53.713666",
   "version": "1.0",
-  "updated_at": "2026-01-06T14:36:42.654496"
+  "updated_at": "2026-01-13T01:07:52.341885",
+  "active_model": "logistic_v20260113_010708"
 }

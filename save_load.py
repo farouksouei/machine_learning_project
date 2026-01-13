@@ -275,6 +275,7 @@ class ModelRegistry:
             return {
                 "models": {},
                 "experiments": {},
+                "active_model": None,
                 "created_at": datetime.now().isoformat(),
                 "version": "1.0"
             }
@@ -480,4 +481,77 @@ class ModelRegistry:
             best_row["model_name"],
             best_row["version"]
         )
+
+    def set_active_model(self, model_id: str) -> None:
+        """
+        Set the active model for predictions.
+
+        Args:
+            model_id: Model ID to set as active (e.g., "logistic_v20260112_221304")
+        """
+        # Validate model exists
+        found = False
+        for model_name, versions in self.registry["models"].items():
+            for version, info in versions.items():
+                if info["model_id"] == model_id:
+                    found = True
+                    break
+            if found:
+                break
+
+        if not found:
+            raise ValueError(f"Model '{model_id}' not found in registry")
+
+        self.registry["active_model"] = model_id
+        self._save_registry()
+        print(f"Active model set to: {model_id}")
+
+    def get_active_model(self) -> Optional[tuple]:
+        """
+        Get the currently active model.
+
+        Returns:
+            Tuple of (model, metadata) or None if no active model
+        """
+        active_model_id = self.registry.get("active_model")
+
+        if not active_model_id:
+            return None
+
+        # Find model name and version from model_id
+        for model_name, versions in self.registry["models"].items():
+            for version, info in versions.items():
+                if info["model_id"] == active_model_id:
+                    return self.load_model_version(model_name, version)
+
+        return None
+
+    def get_active_model_id(self) -> Optional[str]:
+        """Get the ID of the currently active model."""
+        return self.registry.get("active_model")
+
+    def load_model_by_id(self, model_id: str) -> tuple:
+        """
+        Load a model by its ID.
+
+        Args:
+            model_id: Model ID (e.g., "logistic_v20260112_221304")
+
+        Returns:
+            Tuple of (model, metadata)
+        """
+        for model_name, versions in self.registry["models"].items():
+            for version, info in versions.items():
+                if info["model_id"] == model_id:
+                    return self.load_model_version(model_name, version)
+
+        raise ValueError(f"Model '{model_id}' not found in registry")
+
+    def get_model_ids(self) -> List[str]:
+        """Get list of all model IDs in the registry."""
+        model_ids = []
+        for model_name, versions in self.registry["models"].items():
+            for version, info in versions.items():
+                model_ids.append(info["model_id"])
+        return model_ids
 

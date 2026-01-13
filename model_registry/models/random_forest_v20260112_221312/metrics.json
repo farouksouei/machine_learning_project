@@ -1,0 +1,16 @@
+{
+  "train_accuracy": 1.0,
+  "train_precision": 1.0,
+  "train_recall": 1.0,
+  "train_f1": 1.0,
+  "train_roc_auc": 1.0,
+  "val_accuracy": 0.7941437444543035,
+  "val_precision": 0.6700507614213198,
+  "val_recall": 0.4414715719063545,
+  "val_f1": 0.532258064516129,
+  "val_roc_auc": 0.8355145169889971,
+  "cv_roc_auc_mean": 0.8286763912139135,
+  "cv_roc_auc_std": 0.010033595031716252,
+  "timestamp": "2026-01-12T22:13:12.261223",
+  "saved_at": "2026-01-12 22:13:12"
+}

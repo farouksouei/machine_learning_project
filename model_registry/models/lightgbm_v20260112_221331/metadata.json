@@ -1,0 +1,39 @@
+{
+  "model_id": "lightgbm_v20260112_221331",
+  "model_name": "lightgbm",
+  "version": "20260112_221331",
+  "registered_at": "2026-01-12T22:13:31.956266",
+  "model_path": "model_registry\\models\\lightgbm_v20260112_221331\\model.pkl",
+  "metrics_path": "model_registry\\models\\lightgbm_v20260112_221331\\metrics.json",
+  "metrics": {
+    "train_accuracy": 0.8806301309074772,
+    "train_precision": 0.8238188976377953,
+    "train_recall": 0.6998327759197325,
+    "train_f1": 0.7567811934900542,
+    "train_roc_auc": 0.9556684468211262,
+    "val_accuracy": 0.7959183673469388,
+    "val_precision": 0.6575342465753424,
+    "val_recall": 0.4816053511705686,
+    "val_f1": 0.555984555984556,
+    "val_roc_auc": 0.8389862343075953,
+    "cv_roc_auc_mean": 0.8339703899126942,
+    "cv_roc_auc_std": 0.004936387374152022,
+    "timestamp": "2026-01-12T22:13:31.956266",
+    "saved_at": "2026-01-12 22:13:31"
+  },
+  "tags": [
+    "churn_prediction",
+    "production"
+  ],
+  "metadata": {
+    "best_params": {},
+    "preprocessing": "simple",
+    "data_shape": [
+      4507,
+      20
+    ],
+    "trained_at": "2026-01-12T22:13:31.946196"
+  },
+  "saved_at": "2026-01-12T22:13:31.957265",
+  "python_version": "3.12.10"
+}

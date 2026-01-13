@@ -16,7 +16,7 @@ import asyncio
 from datetime import datetime
 from typing import Dict, List, Optional, Any, Union
 from pathlib import Path
-
+from fastapi.middleware.cors import CORSMiddleware
 # FastAPI imports
 from fastapi import FastAPI, HTTPException, BackgroundTasks, Query, Path as PathParam
 from fastapi.responses import JSONResponse, FileResponse
@@ -28,7 +28,7 @@ import numpy as np
 from sklearn.metrics import classification_report
 
 # Local imports
-from inference import predict
+from inference import predict, get_available_models, set_active_model, get_active_model_id
 from train import ChurnTrainer, train_churn_model
 from save_load import ModelRegistry, create_metrics_directory
 from data_loader import load_data
@@ -60,6 +60,15 @@ app = FastAPI(
         "name": "ML Engineering Team",
         "email": "ml-team@company.com"
     }
+)
+
+# Add CORS middleware - wildcard configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],           # ← allows all origins
+    allow_credentials=True,        # important if you use cookies/auth headers
+    allow_methods=["*"],           # allows GET, POST, PUT, DELETE, OPTIONS, etc.
+    allow_headers=["*"],           # allows any header (Content-Type, Authorization, etc.)
 )
 
 # Initialize components
@@ -264,24 +273,33 @@ async def health_check():
 
 
 @app.post("/predict", response_model=PredictionResponse, tags=["Prediction"])
-async def predict_churn(customer_data: CustomerData):
+async def predict_churn(
+    customer_data: CustomerData,
+    model_id: Optional[str] = Query(default=None, description="Model ID to use for prediction. If not specified, uses the active model.")
+):
     """
     Predict customer churn with confidence scores and risk analysis.
-    
-    This endpoint uses the currently deployed model to make predictions
+
+    This endpoint uses the specified model (or active model) to make predictions
     and provides detailed analysis including confidence levels and risk factors.
+
+    You can specify a model_id to use a specific model, or leave it empty to use
+    the currently active model.
     """
     try:
         # Convert Pydantic model to dictionary
         data_dict = customer_data.dict()
-        
-        # Make prediction using the inference module
-        basic_prediction = predict(data_dict)
-        
-        # Enhanced prediction with confidence and risk analysis
-        # (This would typically use the current_trainer if available)
-        churn_prob = 0.5  # Placeholder - would come from model.predict_proba()
-        
+
+        # Make prediction using the inference module with optional model_id
+        basic_prediction = predict(data_dict, model_id=model_id)
+
+        # Check for errors in prediction
+        if "error" in basic_prediction:
+            raise HTTPException(status_code=500, detail=basic_prediction["error"])
+
+        # Get probability from the prediction
+        churn_prob = basic_prediction.get("probability", 0.5)
+
         # Determine confidence level based on probability
         if churn_prob < 0.3 or churn_prob > 0.7:
             confidence = "High"
@@ -289,7 +307,7 @@ async def predict_churn(customer_data: CustomerData):
             confidence = "Medium"
         else:
             confidence = "Low"
-        
+
         # Identify risk factors (simplified logic)
         risk_factors = []
         if customer_data.Contract == "Month-to-month":
@@ -300,16 +318,18 @@ async def predict_churn(customer_data: CustomerData):
             risk_factors.append("High monthly charges")
         if customer_data.PaymentMethod == "Electronic check":
             risk_factors.append("Electronic check payment")
-        
+
         return PredictionResponse(
             churn=basic_prediction["churn"],
             churn_probability=churn_prob,
             confidence=confidence,
             risk_factors=risk_factors,
-            model_version="1.0",
+            model_version=basic_prediction.get("model_id", "unknown"),
             prediction_timestamp=datetime.now().isoformat()
         )
-        
+
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction failed: {str(e)}")
 
@@ -472,10 +492,10 @@ async def compare_models(
 async def get_model_comparison():
     """Get model comparison metrics."""
     comparison_path = "metrics/model_comparison.csv"
-    
+
     if not os.path.exists(comparison_path):
         raise HTTPException(status_code=404, detail="Model comparison not available")
-    
+
     try:
         comparison_df = pd.read_csv(comparison_path)
         return {
@@ -490,12 +510,62 @@ async def get_model_comparison():
         raise HTTPException(status_code=500, detail=f"Failed to load comparison: {str(e)}")
 
 
-@app.get("/hello/{name}", tags=["General"])
-async def say_hello(name: str):
-    """Simple hello endpoint for testing."""
-    return {"message": f"Hello {name}"}
+# Model Selection Endpoints
+
+@app.get("/models/active", tags=["Models"])
+async def get_active_model_endpoint():
+    """Get the currently active model for predictions."""
+    active_id = get_active_model_id()
+    if active_id is None:
+        return {
+            "active_model": None,
+            "message": "No active model set. The best model will be used for predictions."
+        }
+    return {
+        "active_model": active_id,
+        "message": f"Active model is set to: {active_id}"
+    }
+
+
+@app.post("/models/active/{model_id}", tags=["Models"])
+async def set_active_model_endpoint(model_id: str):
+    """
+    Set the active model for predictions.
+
+    Args:
+        model_id: The model ID to set as active (e.g., "logistic_v20260112_221304")
+    """
+    available = get_available_models()
+    if model_id not in available:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Model '{model_id}' not found. Available models: {available}"
+        )
+
+    success = set_active_model(model_id)
+    if success:
+        return {
+            "status": "success",
+            "message": f"Active model set to: {model_id}",
+            "active_model": model_id
+        }
+    else:
+        raise HTTPException(status_code=500, detail="Failed to set active model")
+
+
+@app.get("/models/available", tags=["Models"])
+async def list_available_models():
+    """List all available model IDs that can be used for predictions."""
+    available = get_available_models()
+    active = get_active_model_id()
+
+    return {
+        "available_models": available,
+        "total": len(available),
+        "active_model": active
+    }
 
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True, log_level="info")
